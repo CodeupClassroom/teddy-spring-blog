@@ -40,4 +40,10 @@ public class HelloWorldController {
         return "Lights " + mode;
     }
 
+    @PostMapping("/postExample")
+    @ResponseBody
+    public String testPost(@RequestParam String name){
+        return "Test Post successful, name: " + name;
+    }
+
 }
