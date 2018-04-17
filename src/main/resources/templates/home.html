@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Home Page</title>
-</head>
+<head th:replace="partials/header :: header('This is the home page')"></head>
 <body>
 
     <h1>This is the home page!</h1>
@@ -31,9 +28,7 @@
 
 
     <!-- Partials -->
-    <div th:replace="partials/master :: footer"></div>
-
-    <div th:include="partials/master :: footer"></div>
+    <div th:replace="partials/footer :: footer"></div>
 
 </body>
 </html>
