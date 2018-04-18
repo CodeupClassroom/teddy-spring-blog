@@ -30,4 +30,8 @@ public class AdService {
         ads.add(new Ad("Test Title 3", "This is a test post description 3."));
         ads.add(new Ad("Test Title 4", "This is a test post description 4."));
     }
+
+    public void save(Ad ad){
+        this.ads.add(ad);
+    }
 }

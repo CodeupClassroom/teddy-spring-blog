@@ -1,14 +1,10 @@
 package com.example.blog.controllers;
 
-
+import com.example.blog.models.Ad;
 import com.example.blog.services.AdService;
-import com.example.blog.services.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AdsController {
@@ -32,15 +28,15 @@ public class AdsController {
     }
 
     @GetMapping("/ads/create")
-    @ResponseBody
-    public String create() {
-        return "Here is the ads create form...";
+    public String showCreateForm(Model viewModel) {
+        viewModel.addAttribute("newAd", new Ad());
+        return "/ads/create";
     }
 
     @PostMapping("/ads/create")
-    @ResponseBody
-    public String insert() {
-        return "Inserted new ads!";
+    public String insert(@ModelAttribute Ad newAd) {
+        adSvc.save(newAd);
+        return "redirect:/ads";
     }
 
 }
