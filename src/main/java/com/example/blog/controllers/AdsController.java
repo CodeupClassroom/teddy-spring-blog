@@ -39,4 +39,17 @@ public class AdsController {
         return "redirect:/ads";
     }
 
+    @GetMapping("/ads/{id}/edit")
+    public String edit(@PathVariable long id, Model viewModel){
+        viewModel.addAttribute("ad", adSvc.getAd(id));
+        return "/ads/edit";
+    }
+
+    @PostMapping("/ads/edit")
+    public String handleEdit(@ModelAttribute Ad ad){
+        System.out.println("ad = " + ad.getId());
+        System.out.println("ad = " + ad.getDescription());
+        System.out.println("ad = " + ad.getTitle());
+        return "redirect:/ads";
+    }
 }
