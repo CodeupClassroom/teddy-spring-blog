@@ -1,9 +1,19 @@
 package com.example.blog.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ads")
 public class Ad {
 
+    @Id
+    @GeneratedValue
     private long id;
+
+    @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false)
     private String description;
 
     public Ad() {
