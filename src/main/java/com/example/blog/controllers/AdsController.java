@@ -34,12 +34,9 @@ public class AdsController {
     }
 
     @PostMapping("/ads/create")
-    @ResponseBody
     public String insert(@ModelAttribute Ad newAd) {
-        System.out.println("newAd.getDescription() = " + newAd.getDescription());
-        System.out.println("newAd.getTitle() = " + newAd.getTitle());
-
-        return "Inserted new ads!";
+        adSvc.save(newAd);
+        return "redirect:/ads";
     }
 
 }
