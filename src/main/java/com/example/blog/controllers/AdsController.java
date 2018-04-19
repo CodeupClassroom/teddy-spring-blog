@@ -1,6 +1,7 @@
 package com.example.blog.controllers;
 
 import com.example.blog.models.Ad;
+import com.example.blog.repositories.AdRepository;
 import com.example.blog.services.AdService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,21 +10,23 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class AdsController {
 
-    AdService adSvc;
+    private final AdService adSvc;
+    private final AdRepository adDao;
 
-    public AdsController(AdService adSvc) {
+    public AdsController(AdService adSvc, AdRepository adDao) {
         this.adSvc = adSvc;
+        this.adDao = adDao;
     }
 
     @GetMapping("/ads")
     public String index(Model model) {
-        model.addAttribute("ads", adSvc.getAllAds());
+        model.addAttribute("ads", adDao.findAll());
         return "/ads/index";
     }
 
     @GetMapping("/ads/{id}")
     public String show(@PathVariable long id, Model model) {
-        model.addAttribute("ad", adSvc.getAd(id));
+        model.addAttribute("ad", adDao.findById(id));
         return "/ads/show";
     }
 
@@ -35,7 +38,7 @@ public class AdsController {
 
     @PostMapping("/ads/create")
     public String insert(@ModelAttribute Ad newAd) {
-        adSvc.save(newAd);
+        adDao.save(newAd);
         return "redirect:/ads";
     }
 
