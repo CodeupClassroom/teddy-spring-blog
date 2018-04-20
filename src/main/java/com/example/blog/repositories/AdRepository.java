@@ -6,7 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AdRepository extends CrudRepository<Ad, Long> {
-
-    Ad findById(long id);
-
 }

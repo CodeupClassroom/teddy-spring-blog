@@ -9,13 +9,18 @@
 
     <form th:action="@{/ads/edit}" th:method="post" th:object="${ad}">
         Title:
-        <input th:field="*{title}" th:value="${title}" />
+        <input th:field="*{title}" />
         <br />
         Description:
-        <input th:field="*{description}" th:value="${description}" />
+        <input th:field="*{description}" />
         <br />
-        <input type="hidden" th:field="*{id}" th:value="${id}" />
+        <input type="hidden" th:field="*{id}"  />
         <input type="submit" />
+    </form>
+
+    <form th:action="@{/ads/delete}" th:method="post" th:object="${ad}">
+        <input type="hidden" th:field="*{id}"  />
+        <button id="delete">Delete</button>
     </form>
 
 </main>
