@@ -24,6 +24,9 @@
 
             <!-- This is how you use the one to one -->
             <p th:text="${ad.user.email}"></p>
+
+            <span th:each="category : ${ad.categories}" th:text="${category.name + ', '}"></span>
+
         </div>
 
     </main>
