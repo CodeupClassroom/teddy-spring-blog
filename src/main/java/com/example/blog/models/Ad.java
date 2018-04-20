@@ -1,6 +1,7 @@
 package com.example.blog.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ads")
@@ -16,18 +17,34 @@ public class Ad {
     @Column(nullable = false)
     private String description;
 
+    // Creates the relationship to the users table
+    @OneToOne
+    private User user;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ad")
+    private List<AdImage> images;
+
+    @OneToOne
+    private AdDetails adDetails;
+
     public Ad() {
     }
 
-    public Ad(String title, String description, long id) {
+    public Ad(String title, String description, long id, User user, AdDetails adde, List<AdImage> images) {
         this.title = title;
         this.description = description;
         this.id = id;
+        this.user = user;
+        this.images = images;
+        this.adDetails = adde;
     }
 
-    public Ad(String title, String description) {
+    public Ad(String title, String description, User user,  AdDetails adde, List<AdImage> images) {
         this.title = title;
         this.description = description;
+        this.user = user;
+        this.images = images;
+        this.adDetails = adde;
     }
 
     public String getTitle() {
@@ -52,5 +69,29 @@ public class Ad {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<AdImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<AdImage> images) {
+        this.images = images;
+    }
+
+    public AdDetails getAdDetails() {
+        return adDetails;
+    }
+
+    public void setAdDetails(AdDetails adDetails) {
+        this.adDetails = adDetails;
     }
 }
