@@ -2,6 +2,7 @@ package com.example.blog.controllers;
 
 import com.example.blog.models.User;
 import com.example.blog.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String showLoginForm() {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return "users/login";
     }
 }
