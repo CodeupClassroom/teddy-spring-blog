@@ -19,6 +19,13 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    public User(User copy) {
+       this.id = copy.id;
+       this.username = copy.username;
+       this.email = copy.email;
+       this.password = copy.password;
+    }
+
     // This is useful to insert users
     public User(String username, String email, String password) {
         this.username = username;
